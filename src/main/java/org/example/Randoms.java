@@ -5,32 +5,25 @@ import java.util.Random;
 
 public class Randoms implements Iterable<Integer> {
     private Random random = new Random();
-    private int number;
+    private int min;
+    private int max;
 
     public Randoms(int min, int max) {
-        int number = random.nextInt(max - min + 1);
-        System.out.println("Случайное сгенерированное число равно: " + number + "!!!" + " Начинаем итерироваться.");
-        this.number = number;
+        this.min = min;
+        this.max = max;
     }
 
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<>() {
-            int randomNumber = number;
-            int cursor = 0;
-
             @Override
             public boolean hasNext() {
-                if (randomNumber > cursor) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return true;
             }
 
             @Override
             public Integer next() {
-                return cursor++;
+                return random.nextInt(max - min + 1);
             }
         };
     }
